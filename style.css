@@ -1,0 +1,60 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+
+#text {
+    color: white;
+    text-align: center;
+}
+
+.container {
+    width: 800px;
+    max-width: 80%;
+    padding: 10px;
+    background-color: #333333;
+    border-radius: 5px;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 5px 10px;
+    font-weight: 500;
+    border: 1px solid transparent; /*Stop it from jumping during hover*/
+}
+
+.btn:hover {
+    border-color: red;
+}
+
+#input {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+}
+
+/* #input button {
+   margin: 5px;
+} */
+
+#your-name {
+    margin: 15px;
+}
