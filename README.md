@@ -1,4 +1,4 @@
-# Textbased-adeventure
+# A textbased adventure
 
 My super chaotic first ever javascript project. An epic adventure set in the far away land of Wisteria, where a big wedding is about the begin... Sadly I 
 haven't had the time to clean up the code or finish the story. Right now the only thing you can do is spend some money, get drunk, and die if you go to a bar. 
