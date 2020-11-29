@@ -27,6 +27,7 @@ function removeButtons () {
         optionButtonsElement.removeChild(optionButtonsElement.firstChild) /*removoes all options when options element has a first child*/
     }
 }
+
 //Removes the input box
 function removeInput () {
     while (inputTextElement.firstChild) {
@@ -39,7 +40,7 @@ function removeInput () {
 //Save character name
 function confirmText () { //when the confirm button is clicked, save the characters name and start the game
     characterName = document.getElementById("your-name").value;
-    console.log(characterName)
+    console.log("Oh, hi there "+characterName)
     textElement.innerText = "Nice to meet you " + characterName +". Be careful.";
     removeInput () //removes the input box so it doesent show when the game starts
     removeButtons ()
@@ -70,10 +71,15 @@ function sound(src) {
 //starts the game
 function startGame() { 
     state = {}
+    money = 0
     populateList()
     showTextNode(1)
     myMusic = new sound("love-from-afar.mp3");
     myMusic.play()
+}
+
+function getMoney(coins){
+    money += coins
 }
 
 //Display whichever option we're on//
@@ -107,6 +113,9 @@ function selectOption(option) {
         return startGame()
       }
     state = Object.assign(state, option.setState) //take state we have currently add everything from option setstate to it, ovverride anything thats already there.
+    if (state.someMoney){
+        getMoney(15) // give the player 15 coins
+    }
     showTextNode(nextTextNodeId)
 }
 
@@ -162,14 +171,14 @@ function populateList()
         );
         textNodes.push(
                     {  id: 3,
-                    text: "You eventually reach the town where the celebrations is in full bloom. There's music comming from an beat up looking tavern to your left. To your right, a quite Inn glows calmly.",
+                    text: "You eventually reach the town where the celebrations is in full bloom. There's music comming from a beat up looking tavern to your left. To your right, a quiet Inn glows calmly.",
                     options: [
                       {
                         text: 'Party at the tavern',
                         nextText: 4
                       },
                       {
-                        text: 'Ask for a room at the quite Inn',
+                        text: 'Ask for a room at the quiet Inn',
                         nextText: 5
                       },
                       {
@@ -190,6 +199,54 @@ function populateList()
                             nextText: -1
                         }
                       ]
+        })
+
+        textNodes.push(
+            {
+            id: 5,
+             text: "As soon as you walk in through the door at the inn, you feel like you made the right choice. There's a fire crackling in the fireplace, and the owner, a very kind looking dwarf gives you a smile.",
+             options: [
+                 {
+                   text: "Ask her about the celebrations",
+                   nextText: 7
+               },
+               {
+                text: "Ask for a room for the night",
+                nextText: 8
+            }
+             ]
+})
+
+        textNodes.push(
+            {
+            id: 7,
+            text: "'Oh, you don't know? Our princess is getting married! It's odd to see a stranger who's not here explicitly for the wedding'",
+            options: [
+                {
+                text: "Thank her for the information and ask for a room",
+                nextText: 8
+            }
+            ]
+        })
+
+        let id_8_text
+        if (money > 0) {
+            id_8_text =  "You have money"
+        }
+        else{
+            id_8_text = "You have no money"
+        }
+        textNodes.push(
+            {
+            id: 8,
+            text: id_8_text,
+            options: [
+            {
+            text: id_8_text,
+            nextText: 7
+            }
+            ]
+            
         })
     
     }
